@@ -1,0 +1,7 @@
+总的来说，大部分的是针对区间内最大合或者最大差来出题，
+    1. 使用贪心算法
+        利用current去track，然后判断是否更新curret sum
+        然后用current sum和acc sum比较
+    2. 使用DP
+        max 
+        min

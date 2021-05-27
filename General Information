@@ -1,0 +1,22 @@
+Pointer 
+Binary Search 
+Queue, Stack 
+LinkedList 
+DFS
+BFS
+
+DP:
+    1. 求最大区间差：
+        maxi = 0
+        min = nums[0]
+        for num in nums[1:]:
+            maxi = max(maxi, num - min)
+            min = min(num, min)
+        return max
+    2. 求最大区间和：
+        maxi = curr = nums[0]
+        for num in nums[1:]:
+            curr = max(curr, curr + num)
+            maxi = max(maxi, curr)
+        return maxi
+        

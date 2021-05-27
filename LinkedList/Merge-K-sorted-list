@@ -1,0 +1,17 @@
+Approach 1: Brute Force 
+We can iterate all the list, and put them into one list, and sort it. 
+We insert the sorted list into the LinkedList 
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        temp_list = []
+        head = curr = ListNode(0)
+        for linkedList in lists:
+            while linkedList:
+                temp_list.append(linkedList.val)
+                linkedList = linkedList.next
+        for num in sorted(temp_list):
+            curr.next = ListNode(num)
+            curr = curr.next 
+        return head.next
+
+        

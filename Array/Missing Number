@@ -1,0 +1,60 @@
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+Input: nums = [3,0,1]
+Output: 2
+
+Brute Force1: Slow 5.12%
+We can have the length first and generate a new list based on the length
+Iterate through the list, if there is one num that is not in nums, we return that. 
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        for number in range(len(nums) + 1):
+            if number not in nums:
+                return number
+            
+
+Brute Force2: 
+
+If we sort the array, then since it is a continuous one, we can predicate the next number by + 1
+[0,1,3]
+when the index is pointing at 1, we could know that the next number should be 2.
+If it is not, then we return 2. 
+
+If the last element is not equal to the length, we can just return the length 
+
+For example, 
+[0,1,2]
+We are missing 3, which is the length of the array. 
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        if nums[-1] != len(nums):
+            return len(nums)
+        
+        elif nums[0] != 0:
+            return 0
+        
+        for i in range(1, len(nums)):
+            guess = nums[i - 1] + 1
+            if nums[i] != guess:
+                return guess
+
+HashSet, modified version of BF1:
+If we change the nums into a set, we can query for containment in o(1) time
+
+Gauss's Formula: 
+We can use the difference of sum to get the number
+[0,1,3] = sum = 4
+[0,1,2,3] = sum = 6
+6 - 4 = 2
+so we return 2
+
+Use Gauss's formula to calculate the sum of a continuous array when we know the first num and last num. 
+n(n+1) / 2
+class Solution:
+    def missingNumber(self, nums):
+        expected_sum = len(nums)*(len(nums)+1)//2
+        actual_sum = sum(nums)
+        return expected_sum - actual_sum
